@@ -1,0 +1,1498 @@
+<html>
+<head>瘟疫公司实际地区传染性计算</head>
+<script type="text/javascript">
+var wealthy=0;
+var poverty=0;
+var urban=0;
+var rural=0;
+var hot=0;
+var cold=0;
+var humid=0;
+var arid=0;
+var population_density=0;
+var wealthy_resisitance=0;
+var poverty_resistance=0;
+var urban_resistance=0;
+var rural_resistance=0;
+var hot_resistance=0;
+var cold_resistance=0;
+var humid_resistance=0;
+var arid_resistance=0;
+var use_bioweapon=0;
+var use_bacteria=0;
+var use_parasite=0;
+var use_fungus=0;
+var use_virus=0;
+</script>
+<p>所要计算的地区</p>
+<p>
+    <select id="selectCountry" onchange="function1()">
+        <option id="op" value="no">选择所要计算的地区</option>
+        <option id="op_1" value="USA">美国</option>
+        <option id="op_2" value="Canada">加拿大</option>
+        <option id="op_3" value="Greenland">格陵兰岛</option>
+        <option id="op_4" value="Mexico">墨西哥</option>
+        <option id="op_5" value="Brazil">巴西</option>
+        <option id="op_6" value="Argentina">阿根廷</option>
+        <option id="op_7" value="Caribbean">加勒比海</option>
+        <option id="op_8" value="CAmerica">中美洲地区</option>
+        <option id="op_9" value="Colombia">哥伦比亚</option>
+        <option id="op_10" value="Bolivia">玻利维亚</option>
+        <option id="op_11" value="Peru">秘鲁</option>
+        <option id="op_12" value="Iceland">冰岛</option>
+        <option id="op_13" value="Spain">西班牙</option>
+        <option id="op_14" value="UK">英国</option>
+        <option id="op_15" value="France">法国</option>
+        <option id="op_16" value="Germany">德国</option>
+        <option id="op_17" value="Italy">意大利</option>
+        <option id="op_18" value="Poland">波兰</option>
+        <option id="op_19" value="Ukraine">乌克兰</option>
+        <option id="op_20" value="Norway">挪威</option>
+        <option id="op_21" value="Sweden">瑞典</option>
+        <option id="op_22" value="Finland">芬兰</option>
+        <option id="op_23" value="Russia">俄罗斯</option>
+        <option id="op_24" value="Turkey">土耳其</option>
+        <option id="op_25" value="BalkanStates">巴尔干国家</option>
+        <option id="op_26" value="BalticStates">波罗地亚</option>
+        <option id="op_27" value="Madagascar">马达加斯加</option>
+        <option id="op_28" value="Egypt">埃及</option>
+        <option id="op_29" value="EastAfrica">西非</option>
+        <option id="op_30" value="WestAfrica">东非地区</option>
+        <option id="op_31" value="CentralAfrica">中非地区</option>
+        <option id="op_32" value="Morocco">摩洛哥</option>
+        <option id="op_33" value="Libya">利比亚</option>
+        <option id="op_34" value="Sudan">苏丹</option>
+        <option id="op_35" value="SouthAfrica">南非地区</option>
+        <option id="op_37" value="Indonesia">印度尼西亚</option>
+        <option id="op_38" value="NewZealand">新西兰</option>
+        <option id="op_39" value="Philippines">菲律宾</option>
+        <option id="op_40" value="SEAsia">东南亚</option>
+        <option id="op_41" value="Australia">澳大利亚</option>
+        <option id="op_42" value="China">中国</option>
+        <option id="op_43" value="India">印度</option>
+        <option id="op_44" value="Japan">日本</option>
+        <option id="op_45" value="Korea">韩国</option>
+        <option id="op_46" value="CentralAsia">中亚地区</option>
+        <option id="op_47" value="Middleeast">中东地区</option>
+        <option id="op_48" value="Pakistan">巴基斯坦</option>
+        <option id="op_49" value="Afghanistan">阿富汗</option>
+        <option id="op_50" value="Iran">伊朗</option>
+        <option id="op_51" value="NewGuinea">新几内亚</option>
+        <option id="op_52" value="CentralEurope">中欧地区</option>
+        <option id="op_53" value="SaudiArabia">沙特阿拉伯</option>
+        <option id="op_54" value="Kazakhstan">哈萨克斯坦</option>
+        <option id="op_55" value="Iraq">伊拉克</option>
+        <option id="op_56" value="Botswana">博兹瓦纳</option>
+        <option id="op_57" value="Zimbabwe">津巴布韦</option>
+        <option id="op_58" value="Angola">安哥拉</option>
+        <option id="op_59" value="Algeria">阿尔及利亚</option>
+    </select>
+    <br>
+    </br>
+</p>
+
+<script>
+    function function1() {
+        var mySelect = document.getElementById("selectCountry");   //定位id（获取select）
+        var index = mySelect.selectedIndex;   //选中索引（选取select中option选中的第几个）
+        var text = mySelect.options[index].text; //获取选中文本，即option标签对之间的文字
+        var value = mySelect.options[index].value;   //获取选中值
+
+        if (value=="USA") {  //注意index是从0开始的
+            wealthy=1;
+            poverty=0;
+            urban=1;
+            rural=0;
+            hot=0;
+            cold=0;
+            humid=0;
+            arid=0;
+            population_density=1;               
+        }else if(value=="Canada"){
+            wealthy=1;
+            poverty=0;
+            urban=0;
+            rural=0;
+            hot=0;
+            cold=1;
+            humid=0;
+            arid=0;
+            population_density=0.75; 
+        }else if(value=="Greenland"){
+            wealthy=0;
+            poverty=0;
+            urban=0;
+            rural=0;
+            hot=0;
+            cold=1;
+            humid=0;
+            arid=0;
+            population_density=0.75; 
+        }else if(value=="Mexico"){
+            wealthy=0;
+            poverty=0;
+            urban=1;
+            rural=0;
+            hot=1;
+            cold=0;
+            humid=0;
+            arid=1;
+            population_density=1; 
+        }else if(value=="Brazil"){
+            wealthy=0;
+            poverty=0;
+            urban=0;
+            rural=1;
+            hot=1;
+            cold=0;
+            humid=1;
+            arid=0;
+            population_density=1; 
+        }else if(value=="Argentina"){
+            wealthy=0;
+            poverty=0;
+            urban=0;
+            rural=1;
+            hot=0;
+            cold=0;
+            humid=0;
+            arid=0;
+            population_density=1; 
+        }else if(value=="Caribbean"){
+            wealthy=0;
+            poverty=1;
+            urban=0;
+            rural=1;
+            hot=1;
+            cold=0;
+            humid=1;
+            arid=0;
+            population_density=1.25;            
+        }else if(value=="CAmerica"){
+            wealthy=0;
+            poverty=1;
+            urban=1;
+            rural=0;
+            hot=1;
+            cold=0;
+            humid=0;
+            arid=0;
+            population_density=1;             
+        }else if(value=="Colombia"){
+            wealthy=0;
+            poverty=1;
+            urban=0;
+            rural=1;
+            hot=1;
+            cold=0;
+            humid=1;
+            arid=0;
+            population_density=1;             
+        }else if(value=="Bolivia"){
+            wealthy=0;
+            poverty=1;
+            urban=0;
+            rural=1;
+            hot=0;
+            cold=0;
+            humid=1;
+            arid=0;
+            population_density=0.75;            
+        }else if(value=="Peru"){
+            wealthy=0;
+            poverty=1;
+            urban=0;
+            rural=1;
+            hot=0;
+            cold=1;
+            humid=0;
+            arid=1;
+            population_density=1;            
+        }else if(value=="Iceland"){
+            wealthy=0;
+            poverty=0;
+            urban=0;
+            rural=0;
+            hot=0;
+            cold=1;
+            humid=0;
+            arid=0;
+            population_density=0.75;            
+        }else if(value=="Spain"){
+            wealthy=1;
+            poverty=0;
+            urban=0;
+            rural=0;
+            hot=1;
+            cold=0;
+            humid=0;
+            arid=1;
+            population_density=1;            
+        }else if(value=="UK"){
+            wealthy=1;
+            poverty=0;
+            urban=1;
+            rural=0;
+            hot=0;
+            cold=1;
+            humid=1;
+            arid=0;
+            population_density=1;             
+        }else if(value=="France"){
+            wealthy=1;
+            poverty=0;
+            urban=1;
+            rural=0;
+            hot=0;
+            cold=0;
+            humid=0;
+            arid=0;
+            population_density=1;             
+        }else if(value=="Germany"){
+            wealthy=1;
+            poverty=0;
+            urban=1;
+            rural=0;
+            hot=0;
+            cold=1;
+            humid=1;
+            arid=0;
+            population_density=1.25;             
+        }else if(value=="Italy"){
+            wealthy=1;
+            poverty=0;
+            urban=1;
+            rural=0;
+            hot=0;
+            cold=0;
+            humid=0;
+            arid=0;
+            population_density=1;             
+        }else if(value=="Poland"){
+            wealthy=0;
+            poverty=0;
+            urban=0;
+            rural=1;
+            hot=0;
+            cold=1;
+            humid=1;
+            arid=0;
+            population_density=1;            
+        }else if(value=="Ukraine"){
+            wealthy=0;
+            poverty=0;
+            urban=0;
+            rural=1;
+            hot=0;
+            cold=1;
+            humid=1;
+            arid=0;
+            population_density=1;             
+        }else if(value=="Norway"){
+            wealthy=1;
+            poverty=0;
+            urban=1;
+            rural=0;
+            hot=0;
+            cold=1;
+            humid=1;
+            arid=0;
+            population_density=0.75;            
+        }else if(value=="Sweden"){
+            wealthy=1;
+            poverty=0;
+            urban=1;
+            rural=0;
+            hot=0;
+            cold=1;
+            humid=1;
+            arid=0;
+            population_density=1;            
+        }else if(value=="Finland"){
+            wealthy=1;
+            poverty=0;
+            urban=0;
+            rural=1;
+            hot=0;
+            cold=1;
+            humid=1;
+            arid=0;
+            population_density=1;            
+        }else if(value=="Russia"){
+            wealthy=0;
+            poverty=0;
+            urban=0;
+            rural=1;
+            hot=0;
+            cold=1;
+            humid=1;
+            arid=0;
+            population_density=0.75;            
+        }else if(value=="Turkey"){
+            wealthy=0;
+            poverty=0;
+            urban=0;
+            rural=1;
+            hot=0;
+            cold=0;
+            humid=0;
+            arid=0;
+            population_density=1;            
+        }else if(value=="BalkanStates"){
+            wealthy=0;
+            poverty=0;
+            urban=0;
+            rural=1;
+            hot=0;
+            cold=1;
+            humid=1;
+            arid=0;
+            population_density=1;            
+        }else if(value=="BalticStates"){
+            wealthy=0;
+            poverty=0;
+            urban=0;
+            rural=1;
+            hot=0;
+            cold=1;
+            humid=1;
+            arid=0;
+            population_density=1;           
+        }else if(value=="Madagascar"){
+            wealthy=0;
+            poverty=1;
+            urban=0;
+            rural=1;
+            hot=0;
+            cold=0;
+            humid=0;
+            arid=0;
+            population_density=1;             
+        }else if(value=="Egypt"){
+            wealthy=0;
+            poverty=1;
+            urban=0;
+            rural=0;
+            hot=1;
+            cold=0;
+            humid=0;
+            arid=1;
+            population_density=1;            
+        }else if(value=="EastAfrica"){
+            wealthy=0;
+            poverty=1;
+            urban=0;
+            rural=1;
+            hot=1;
+            cold=0;
+            humid=0;
+            arid=0;
+            population_density=1;            
+        }else if(value=="WestAfrica"){
+            wealthy=0;
+            poverty=1;
+            urban=0;
+            rural=1;
+            hot=1;
+            cold=0;
+            humid=0;
+            arid=0;
+            population_density=1;            
+        }else if(value=="CentralAfrica"){
+            wealthy=0;
+            poverty=1;
+            urban=0;
+            rural=1;
+            hot=1;
+            cold=0;
+            humid=0;
+            arid=0;
+            population_density=1;             
+        }else if(value=="Morocco"){
+            wealthy=0;
+            poverty=1;
+            urban=0;
+            rural=1;
+            hot=1;
+            cold=0;
+            humid=0;
+            arid=1;
+            population_density=1;             
+        }else if(value=="Libya"){
+            wealthy=0;
+            poverty=0;
+            urban=1;
+            rural=0;
+            hot=1;
+            cold=0;
+            humid=0;
+            arid=1;
+            population_density=0.75;            
+        }else if(value=="Sudan"){
+            wealthy=0;
+            poverty=1;
+            urban=0;
+            rural=1;
+            hot=1;
+            cold=0;
+            humid=0;
+            arid=1;
+            population_density=1;            
+        }else if(value=="SouthAfrica"){
+            wealthy=0;
+            poverty=0;
+            urban=0;
+            rural=0;
+            hot=1;
+            cold=0;
+            humid=0;
+            arid=1;
+            population_density=1;            
+        }else if(value=="Indonesia"){
+            wealthy=0;
+            poverty=0;
+            urban=0;
+            rural=1;
+            hot=1;
+            cold=0;
+            humid=1;
+            arid=0;
+            population_density=1;            
+        }else if(value=="NewZealand"){
+            wealthy=1;
+            poverty=0;
+            urban=1;
+            rural=0;
+            hot=0;
+            cold=0;
+            humid=0;
+            arid=0;
+            population_density=0.75;            
+        }else if(value=="Philippines"){
+            wealthy=0;
+            poverty=1;
+            urban=0;
+            rural=0;
+            hot=1;
+            cold=0;
+            humid=1;
+            arid=0;
+            population_density=1.25;            
+        }else if(value=="SEAsia"){
+            wealthy=0;
+            poverty=1;
+            urban=0;
+            rural=1;
+            hot=1;
+            cold=0;
+            humid=1;
+            arid=0;
+            population_density=1;            
+        }else if(value=="Australia"){
+            wealthy=1;
+            poverty=0;
+            urban=1;
+            rural=0;
+            hot=1;
+            cold=0;
+            humid=0;
+            arid=1;
+            population_density=0.75;            
+        }else if(value=="China"){
+            wealthy=0;
+            poverty=0;
+            urban=1;
+            rural=0;
+            hot=0;
+            cold=0;
+            humid=0;
+            arid=0;
+            population_density=0.65;            
+        }else if(value=="India"){
+            wealthy=0;
+            poverty=0;
+            urban=0;
+            rural=1;
+            hot=1;
+            cold=0;
+            humid=1;
+            arid=0;
+            population_density=0.7;            
+        }else if(value=="Japan"){
+            wealthy=1;
+            poverty=0;
+            urban=1;
+            rural=0;
+            hot=0;
+            cold=0;
+            humid=0;
+            arid=0;
+            population_density=1.25;            
+        }else if(value=="Korea"){
+            wealthy=0;
+            poverty=0;
+            urban=1;
+            rural=1;
+            hot=0;
+            cold=0;
+            humid=0;
+            arid=0;
+            population_density=1.25;            
+        }else if(value=="CentralAsia"){
+            wealthy=0;
+            poverty=1;
+            urban=0;
+            rural=0;
+            hot=0;
+            cold=0;
+            humid=0;
+            arid=1;
+            population_density=1;            
+        }else if(value=="Middleeast"){
+            wealthy=0;
+            poverty=0;
+            urban=0;
+            rural=0;
+            hot=1;
+            cold=0;
+            humid=0;
+            arid=1;
+            population_density=1;            
+        }else if(value=="Pakistan"){
+            wealthy=0;
+            poverty=1;
+            urban=0;
+            rural=0;
+            hot=1;
+            cold=0;
+            humid=0;
+            arid=1;
+            population_density=1;            
+        }else if(value=="Afghanistan"){
+            wealthy=0;
+            poverty=1;
+            urban=0;
+            rural=0;
+            hot=0;
+            cold=0;
+            humid=0;
+            arid=1;
+            population_density=1;            
+        }else if(value=="Iran"){
+            wealthy=0;
+            poverty=0;
+            urban=0;
+            rural=0;
+            hot=1;
+            cold=0;
+            humid=0;
+            arid=1;
+            population_density=1;            
+        }else if(value=="NewGuinea"){
+            wealthy=0;
+            poverty=1;
+            urban=0;
+            rural=0;
+            hot=1;
+            cold=0;
+            humid=1;
+            arid=0;
+            population_density=0.75;            
+        }else if(value=="CentralEurope"){
+            wealthy=1;
+            poverty=0;
+            urban=0;
+            rural=0;
+            hot=0;
+            cold=1;
+            humid=1;
+            arid=0;
+            population_density=1;            
+        }else if(value=="SaudiArabia"){
+            wealthy=0;
+            poverty=0;
+            urban=0;
+            rural=0;
+            hot=1;
+            cold=0;
+            humid=0;
+            arid=1;
+            population_density=1;            
+        }else if(value=="Kazakhstan"){
+            wealthy=0;
+            poverty=1;
+            urban=0;
+            rural=0;
+            hot=0;
+            cold=0;
+            humid=0;
+            arid=1;
+            population_density=0.75;            
+        }else if(value=="Iraq"){
+            wealthy=0;
+            poverty=0;
+            urban=0;
+            rural=0;
+            hot=1;
+            cold=0;
+            humid=0;
+            arid=1;
+            population_density=1;            
+        }else if(value=="Botswana"){
+            wealthy=0;
+            poverty=1;
+            urban=0;
+            rural=0;
+            hot=1;
+            cold=0;
+            humid=0;
+            arid=0;
+            population_density=0.75;            
+        }else if(value=="Zimbabwe"){
+            wealthy=0;
+            poverty=1;
+            urban=0;
+            rural=0;
+            hot=1;
+            cold=0;
+            humid=0;
+            arid=0;
+            population_density=1;            
+        }else if(value=="Angola"){
+            wealthy=0;
+            poverty=1;
+            urban=0;
+            rural=0;
+            hot=1;
+            cold=0;
+            humid=0;
+            arid=0;
+            population_density=0.75;            
+        }else if(value=="Algeria"){
+            wealthy=0;
+            poverty=1;
+            urban=0;
+            rural=0;
+            hot=1;
+            cold=0;
+            humid=0;
+            arid=1;
+            population_density=1;            
+        }
+
+        //alert("wealthy:"+wealthy+"poverty:"+poverty+"urban:"+urban+"rural:"+rural+"hot:"+hot+"cold:"+cold+"humid:"+humid+"arid:"+arid+"population_density:"+population_density)
+        if(value=="no"){
+
+        }else{
+            document.getElementById("selectCountry").disabled = true;
+        }
+
+
+        //
+    }
+</script>
+
+<script type="text/javascript">
+    function check(){
+      var checkradio=document.getElementsByName("useradio");
+      var selectvalue=0;        //selectvalue为radio中选中的值
+         for(var i=0;i<checkradio.length;i++) {
+             if(checkradio[i].checked) {
+                selectvalue=checkradio[i].value;
+          }
+      } 
+
+        if(selectvalue=="bacteria"){
+           //alert("bacteria")
+
+           poverty_resistance=poverty_resistance+0.1;
+           hot_resistance=hot_resistance+0.1;
+           cold_resistance=cold_resistance+0.1;
+           arid_resistance=arid_resistance+1;
+           humid_resistance=humid_resistance+1;
+           urban_resistance=urban_resistance+0.2;
+           rural_resistance=rural_resistance+0.2;
+        }else if(selectvalue=="virus"){
+            //alert("virus")
+
+            wealthy_resisitance=wealthy_resisitance-0.005;
+            poverty_resistance=poverty_resistance+0.08;
+            hot_resistance=hot_resistance+0.08;
+            cold_resistance=cold_resistance+0.08;
+            arid_resistance=arid_resistance+0.92;
+           humid_resistance=humid_resistance+0.92;
+           urban_resistance=urban_resistance+0.15;
+           rural_resistance=rural_resistance+0.15;            
+        }else if(selectvalue=="parasite"){
+            //alert("parasite")
+            poverty_resistance=poverty_resistance+0.1;
+           hot_resistance=hot_resistance+0.1;
+           cold_resistance=cold_resistance+0.1;
+           arid_resistance=arid_resistance+1;
+           humid_resistance=humid_resistance+1;
+           urban_resistance=urban_resistance+0.2;
+           rural_resistance=rural_resistance+0.2;            
+        }else if(selectvalue=="fungus"){
+            //alert("fungus")
+            poverty_resistance=poverty_resistance+0.1;
+           hot_resistance=hot_resistance+0.1;
+           cold_resistance=cold_resistance+0.1;
+           humid_resistance=humid_resistance+1;
+           urban_resistance=urban_resistance+0.2;
+           rural_resistance=rural_resistance+0.2;
+        }else if(selectvalue=="bioweapon"){
+            //alert("bioweapon")
+            wealthy_resisitance=wealthy_resisitance+0.15;
+            poverty_resistance=poverty_resistance+0.2;
+           hot_resistance=hot_resistance+0.1;
+           cold_resistance=cold_resistance+0.1;
+           arid_resistance=arid_resistance+1;
+           humid_resistance=humid_resistance+1;
+           urban_resistance=urban_resistance+0.2;
+           rural_resistance=rural_resistance+0.2;
+        }
+
+        var but = document.getElementById("button4").disabled = true;     
+   }
+</script>	
+
+
+
+<p>你的病原体种类为</p>
+<p>
+    <input type="radio" name="useradio" id="bacteria" value="bacteria">
+    <label for="radio1">细菌</label>
+    <input type="radio" name="useradio" id="virus" value="virus">
+    <label for="radio2">病毒</label> 
+    <input type="radio" name="useradio" id="fungus" value="fungus">
+    <label for="radio3">真菌</label>
+    <input type="radio" name="useradio" id="parasite" value="parasite">
+    <label for="radio4">寄生虫</label>
+    <input type="radio" name="useradio" id="bioweapon" value="bioweapon">
+    <label for="radio5">生化武器</label>
+</p>
+<p>
+    <input type="button" id="button4" onClick="check()" value="选定病原体名称">
+</p>
+
+
+
+
+
+
+
+
+<p>开始地点为</p>
+<p>
+    <select id="selectstartCountry" onchange="function2()">
+        <option id="op" value="no">选择开始地区</option>
+        <option id="op_1" value="USA">美国</option>
+        <option id="op_2" value="Canada">加拿大</option>
+        <option id="op_3" value="Greenland">格陵兰岛</option>
+        <option id="op_4" value="Mexico">墨西哥</option>
+        <option id="op_5" value="Brazil">巴西</option>
+        <option id="op_6" value="Argentina">阿根廷</option>
+        <option id="op_7" value="Caribbean">加勒比海</option>
+        <option id="op_8" value="CAmerica">中美洲地区</option>
+        <option id="op_9" value="Colombia">哥伦比亚</option>
+        <option id="op_10" value="Bolivia">玻利维亚</option>
+        <option id="op_11" value="Peru">秘鲁</option>
+        <option id="op_12" value="Iceland">冰岛</option>
+        <option id="op_13" value="Spain">西班牙</option>
+        <option id="op_14" value="UK">英国</option>
+        <option id="op_15" value="France">法国</option>
+        <option id="op_16" value="Germany">德国</option>
+        <option id="op_17" value="Italy">意大利</option>
+        <option id="op_18" value="Poland">波兰</option>
+        <option id="op_19" value="Ukraine">乌克兰</option>
+        <option id="op_20" value="Norway">挪威</option>
+        <option id="op_21" value="Sweden">瑞典</option>
+        <option id="op_22" value="Finland">芬兰</option>
+        <option id="op_23" value="Russia">俄罗斯</option>
+        <option id="op_24" value="Turkey">土耳其</option>
+        <option id="op_25" value="BalkanStates">巴尔干国家</option>
+        <option id="op_26" value="BalticStates">波罗地亚</option>
+        <option id="op_27" value="Madagascar">马达加斯加</option>
+        <option id="op_28" value="Egypt">埃及</option>
+        <option id="op_29" value="EastAfrica">西非</option>
+        <option id="op_30" value="WestAfrica">东非地区</option>
+        <option id="op_31" value="CentralAfrica">中非地区</option>
+        <option id="op_32" value="Morocco">摩洛哥</option>
+        <option id="op_33" value="Libya">利比亚</option>
+        <option id="op_34" value="Sudan">苏丹</option>
+        <option id="op_35" value="SouthAfrica">南非地区</option>
+        <option id="op_37" value="Indonesia">印度尼西亚</option>
+        <option id="op_38" value="NewZealand">新西兰</option>
+        <option id="op_39" value="Philippines">菲律宾</option>
+        <option id="op_40" value="SEAsia">东南亚</option>
+        <option id="op_41" value="Australia">澳大利亚</option>
+        <option id="op_42" value="China">中国</option>
+        <option id="op_43" value="India">印度</option>
+        <option id="op_44" value="Japan">日本</option>
+        <option id="op_45" value="Korea">韩国</option>
+        <option id="op_46" value="CentralAsia">中亚地区</option>
+        <option id="op_47" value="Middleeast">中东地区</option>
+        <option id="op_48" value="Pakistan">巴基斯坦</option>
+        <option id="op_49" value="Afghanistan">阿富汗</option>
+        <option id="op_50" value="Iran">伊朗</option>
+        <option id="op_51" value="NewGuinea">新几内亚</option>
+        <option id="op_52" value="CentralEurope">中欧地区</option>
+        <option id="op_53" value="SaudiArabia">沙特阿拉伯</option>
+        <option id="op_54" value="Kazakhstan">哈萨克斯坦</option>
+        <option id="op_55" value="Iraq">伊拉克</option>
+        <option id="op_56" value="Botswana">博兹瓦纳</option>
+        <option id="op_57" value="Zimbabwe">津巴布韦</option>
+        <option id="op_58" value="Angola">安哥拉</option>
+        <option id="op_59" value="Algeria">阿尔及利亚</option>
+    </select>
+    <br>
+    </br>
+</p>
+<script>
+    function function2() {
+        var mySelect = document.getElementById("selectstartCountry");   //定位id（获取select）
+        var index = mySelect.selectedIndex;   //选中索引（选取select中option选中的第几个）
+        var text = mySelect.options[index].text; //获取选中文本，即option标签对之间的文字
+        var value = mySelect.options[index].value;   //获取选中值
+
+        if (value=="USA") {  //注意index是从0开始的
+              wealthy_resisitance=wealthy_resisitance+0.2;
+              poverty_resistance=poverty_resistance-0.1;
+              urban_resistance=urban_resistance+0.8;
+              rural_resistance=rural_resistance-0.5;
+        }else if(value=="Canada"){
+              wealthy_resisitance=wealthy_resisitance+0.2;
+              poverty_resistance=poverty_resistance-0.1;
+              hot_resistance=hot_resistance-0.3;
+              cold_resistance=cold_resistance+0.5;
+        }else if(value=="Greenland"){
+              hot_resistance=hot_resistance-0.3;
+              cold_resistance=cold_resistance+0.5;
+        }else if(value=="Mexico"){
+              urban_resistance=urban_resistance+0.8;
+              rural_resistance=rural_resistance-0.5;
+              hot_resistance=hot_resistance+0.5;
+              cold_resistance=cold_resistance-0.5;
+              arid_resistance=arid_resistance+0.1;
+              humid_resistance=humid_resistance-0.08;
+        }else if(value=="Brazil"){
+              hot_resistance=hot_resistance+0.5;
+              cold_resistance=cold_resistance-0.5;
+              rural_resistance=rural_resistance+0.8;
+              urban_resistance=urban_resistance-0.8;
+              humid_resistance=humid_resistance+0.1;
+              arid_resistance=arid_resistance-0.1;
+        }else if(value=="Argentina"){
+              rural_resistance=rural_resistance+0.8;
+              urban_resistance=urban_resistance-0.8;
+        }else if(value=="Caribbean"){
+              poverty_resistance=poverty_resistance+0.25;
+              wealthy_resisitance=wealthy_resisitance-0.08;
+              hot_resistance=hot_resistance+0.5;
+              cold_resistance=cold_resistance-0.5;
+              rural_resistance=rural_resistance+0.8;
+              urban_resistance=urban_resistance-0.8;
+              humid_resistance=humid_resistance+0.1;
+              arid_resistance=arid_resistance-0.1;                           
+        }else if(value=="CAmerica"){
+            poverty_resistance=poverty_resistance+0.25;
+            wealthy_resisitance=wealthy_resisitance-0.08;
+            rural_resistance=rural_resistance+0.8;
+            urban_resistance=urban_resistance-0.8;
+            hot_resistance=hot_resistance+0.5;
+            cold_resistance=cold_resistance-0.5;
+        }else if(value=="Colombia"){
+            poverty_resistance=poverty_resistance+0.25;
+            wealthy_resisitance=wealthy_resisitance-0.08;
+            hot_resistance=hot_resistance+0.5;
+            cold_resistance=cold_resistance-0.5;
+            rural_resistance=rural_resistance+0.8;
+            urban_resistance=urban_resistance-0.8;
+            humid_resistance=humid_resistance+0.1;
+            arid_resistance=arid_resistance-0.1;              
+        }else if(value=="Bolivia"){
+            poverty_resistance=poverty_resistance+0.25;
+            wealthy_resisitance=wealthy_resisitance-0.08;
+            rural_resistance=rural_resistance+0.8;
+            urban_resistance=urban_resistance-0.8;
+            humid_resistance=humid_resistance+0.1;
+            arid_resistance=arid_resistance-0.1;           
+        }else if(value=="Peru"){
+           hot_resistance=hot_resistance-0.3;
+           cold_resistance=cold_resistance+0.5;
+           rural_resistance=rural_resistance+0.8;
+           urban_resistance=urban_resistance-0.8;    
+           arid_resistance=arid_resistance+0.1;
+           humid_resistance=humid_resistance-0.08; 
+           poverty_resistance=poverty_resistance+0.25;
+           wealthy_resisitance=wealthy_resisitance-0.08;               
+        }else if(value=="Iceland"){
+            hot_resistance=hot_resistance-0.3;
+            cold_resistance=cold_resistance+0.5;           
+        }else if(value=="Spain"){
+           wealthy_resisitance=wealthy_resisitance+0.2;
+           poverty_resistance=poverty_resistance-0.1;
+           hot_resistance=hot_resistance+0.5;
+           cold_resistance=cold_resistance-0.5;  
+           arid_resistance=arid_resistance+0.1;
+           humid_resistance=humid_resistance-0.08;                 
+        }else if(value=="UK"){
+           wealthy_resisitance=wealthy_resisitance+0.2;
+           poverty_resistance=poverty_resistance-0.1; 
+           hot_resistance=hot_resistance-0.3;
+           cold_resistance=cold_resistance+0.5;  
+           urban_resistance=urban_resistance+0.8;
+           rural_resistance=rural_resistance-0.5; 
+           humid_resistance=humid_resistance+0.1;
+           arid_resistance=arid_resistance-0.1;        
+        }else if(value=="France"){
+            wealthy_resisitance=wealthy_resisitance+0.2;
+            poverty_resistance=poverty_resistance-0.1;
+            urban_resistance=urban_resistance+0.8;
+            rural_resistance=rural_resistance-0.5;           
+        }else if(value=="Germany"){
+            wealthy_resisitance=wealthy_resisitance+0.2;
+           poverty_resistance=poverty_resistance-0.1; 
+           hot_resistance=hot_resistance-0.3;
+           cold_resistance=cold_resistance+0.5;  
+           urban_resistance=urban_resistance+0.8;
+           rural_resistance=rural_resistance-0.5; 
+           humid_resistance=humid_resistance+0.1;
+           arid_resistance=arid_resistance-0.1;            
+        }else if(value=="Italy"){
+            wealthy_resisitance=wealthy_resisitance+0.2;
+            poverty_resistance=poverty_resistance-0.1;
+            urban_resistance=urban_resistance+0.8;
+            rural_resistance=rural_resistance-0.5;           
+        }else if(value=="Poland"){
+            rural_resistance=rural_resistance+0.8;
+            urban_resistance=urban_resistance-0.8;  
+            hot_resistance=hot_resistance-0.3;
+            cold_resistance=cold_resistance+0.5;
+            humid_resistance=humid_resistance+0.1;
+            arid_resistance=arid_resistance-0.1;           
+        }else if(value=="Ukraine"){
+            rural_resistance=rural_resistance+0.8;
+            urban_resistance=urban_resistance-0.8;  
+            hot_resistance=hot_resistance-0.3;
+            cold_resistance=cold_resistance+0.5;
+            humid_resistance=humid_resistance+0.1;
+            arid_resistance=arid_resistance-0.1;               
+        }else if(value=="Norway"){
+            wealthy_resisitance=wealthy_resisitance+0.2;
+           poverty_resistance=poverty_resistance-0.1; 
+           hot_resistance=hot_resistance-0.3;
+           cold_resistance=cold_resistance+0.5;  
+           urban_resistance=urban_resistance+0.8;
+           rural_resistance=rural_resistance-0.5; 
+           humid_resistance=humid_resistance+0.1;
+           arid_resistance=arid_resistance-0.1;              
+        }else if(value=="Sweden"){
+            wealthy_resisitance=wealthy_resisitance+0.2;
+           poverty_resistance=poverty_resistance-0.1; 
+           hot_resistance=hot_resistance-0.3;
+           cold_resistance=cold_resistance+0.5;  
+           urban_resistance=urban_resistance+0.8;
+           rural_resistance=rural_resistance-0.5; 
+           humid_resistance=humid_resistance+0.1;
+           arid_resistance=arid_resistance-0.1;            
+        }else if(value=="Finland"){
+            wealthy_resisitance=wealthy_resisitance+0.2;
+           poverty_resistance=poverty_resistance-0.1; 
+           hot_resistance=hot_resistance-0.3;
+           cold_resistance=cold_resistance+0.5;  
+           rural_resistance=rural_resistance+0.8;
+           urban_resistance=urban_resistance-0.8;
+           humid_resistance=humid_resistance+0.1;
+           arid_resistance=arid_resistance-0.1;             
+        }else if(value=="Russia"){
+            rural_resistance=rural_resistance+0.8;
+            urban_resistance=urban_resistance-0.8;  
+            hot_resistance=hot_resistance-0.3;
+            cold_resistance=cold_resistance+0.5;
+            humid_resistance=humid_resistance+0.1;
+            arid_resistance=arid_resistance-0.1;           
+        }else if(value=="Turkey"){
+            rural_resistance=rural_resistance+0.8;
+            urban_resistance=urban_resistance-0.8;         
+        }else if(value=="BalkanStates"){
+            rural_resistance=rural_resistance+0.8;
+            urban_resistance=urban_resistance-0.8;  
+            hot_resistance=hot_resistance-0.3;
+            cold_resistance=cold_resistance+0.5;
+            humid_resistance=humid_resistance+0.1;
+            arid_resistance=arid_resistance-0.1;                        
+        }else if(value=="BalticStates"){
+            rural_resistance=rural_resistance+0.8;
+            urban_resistance=urban_resistance-0.8;  
+            hot_resistance=hot_resistance-0.3;
+            cold_resistance=cold_resistance+0.5;
+            humid_resistance=humid_resistance+0.1;
+            arid_resistance=arid_resistance-0.1;         
+        }else if(value=="Madagascar"){
+            poverty_resistance=poverty_resistance+0.25;
+            wealthy_resisitance=wealthy_resisitance-0.08;
+            rural_resistance=rural_resistance+0.8;
+            urban_resistance=urban_resistance-0.8;            
+        }else if(value=="Egypt"){
+            poverty_resistance=poverty_resistance+0.25;
+            wealthy_resisitance=wealthy_resisitance-0.08;
+            hot_resistance=hot_resistance+0.5;
+            cold_resistance=cold_resistance-0.5; 
+            arid_resistance=arid_resistance+0.1;
+            humid_resistance=humid_resistance-0.08;           
+        }else if(value=="EastAfrica"){
+            poverty_resistance=poverty_resistance+0.25;
+            wealthy_resisitance=wealthy_resisitance-0.08;
+            hot_resistance=hot_resistance+0.5;
+            cold_resistance=cold_resistance-0.5;
+            rural_resistance=rural_resistance+0.8;
+            urban_resistance=urban_resistance-0.8;          
+        }else if(value=="WestAfrica"){
+            poverty_resistance=poverty_resistance+0.25;
+            wealthy_resisitance=wealthy_resisitance-0.08;
+            hot_resistance=hot_resistance+0.5;
+            cold_resistance=cold_resistance-0.5;
+            rural_resistance=rural_resistance+0.8;
+            urban_resistance=urban_resistance-0.8;            
+        }else if(value=="CentralAfrica"){
+            poverty_resistance=poverty_resistance+0.25;
+            wealthy_resisitance=wealthy_resisitance-0.08;
+            hot_resistance=hot_resistance+0.5;
+            cold_resistance=cold_resistance-0.5;
+            rural_resistance=rural_resistance+0.8;
+            urban_resistance=urban_resistance-0.8;              
+        }else if(value=="Morocco"){
+            poverty_resistance=poverty_resistance+0.25;
+            wealthy_resisitance=wealthy_resisitance-0.08;
+            hot_resistance=hot_resistance+0.5;
+            cold_resistance=cold_resistance-0.5;
+            rural_resistance=rural_resistance+0.8;
+            urban_resistance=urban_resistance-0.8; 
+            arid_resistance=arid_resistance+0.1;
+            humid_resistance=humid_resistance-0.08;         
+        }else if(value=="Libya"){
+            urban_resistance=urban_resistance+0.8;
+            rural_resistance=rural_resistance-0.5;
+            hot_resistance=hot_resistance+0.5;
+            cold_resistance=cold_resistance-0.5;
+            arid_resistance=arid_resistance+0.1;
+            humid_resistance=humid_resistance-0.08;             
+        }else if(value=="Sudan"){
+            poverty_resistance=poverty_resistance+0.25;
+            wealthy_resisitance=wealthy_resisitance-0.08;
+            hot_resistance=hot_resistance+0.5;
+            cold_resistance=cold_resistance-0.5;
+            rural_resistance=rural_resistance+0.8;
+            urban_resistance=urban_resistance-0.8; 
+            arid_resistance=arid_resistance+0.1;
+            humid_resistance=humid_resistance-0.08;        
+        }else if(value=="SouthAfrica"){
+            hot_resistance=hot_resistance+0.5;
+            cold_resistance=cold_resistance-0.5; 
+            arid_resistance=arid_resistance+0.1;
+            humid_resistance=humid_resistance-0.08;            
+        }else if(value=="Indonesia"){
+            hot_resistance=hot_resistance+0.5;
+            cold_resistance=cold_resistance-0.5;
+            rural_resistance=rural_resistance+0.8;
+            urban_resistance=urban_resistance-0.8;
+            humid_resistance=humid_resistance+0.1;
+            arid_resistance=arid_resistance-0.1;           
+        }else if(value=="NewZealand"){
+            wealthy_resisitance=wealthy_resisitance+0.2;
+            poverty_resistance=poverty_resistance-0.1;
+            urban_resistance=urban_resistance+0.8;
+            rural_resistance=rural_resistance-0.5;             
+        }else if(value=="Philippines"){
+            poverty_resistance=poverty_resistance+0.25;
+           wealthy_resisitance=wealthy_resisitance-0.08;  
+           hot_resistance=hot_resistance+0.5;
+           cold_resistance=cold_resistance-0.5;  
+           humid_resistance=humid_resistance+0.1;
+           arid_resistance=arid_resistance-0.1;          
+        }else if(value=="SEAsia"){
+            poverty_resistance=poverty_resistance+0.25;
+            wealthy_resisitance=wealthy_resisitance-0.08;
+            hot_resistance=hot_resistance+0.5;
+            cold_resistance=cold_resistance-0.5;
+            rural_resistance=rural_resistance+0.8;
+            urban_resistance=urban_resistance-0.8;
+            humid_resistance=humid_resistance+0.1;
+            arid_resistance=arid_resistance-0.1;          
+        }else if(value=="Australia"){
+            wealthy_resisitance=wealthy_resisitance+0.2;
+            poverty_resistance=poverty_resistance-0.1;
+            urban_resistance=urban_resistance+0.8;
+            rural_resistance=rural_resistance-0.5;
+            hot_resistance=hot_resistance+0.5;
+            cold_resistance=cold_resistance-0.5;
+            arid_resistance=arid_resistance+0.1;
+            humid_resistance=humid_resistance-0.08;            
+        }else if(value=="China"){
+            urban_resistance=urban_resistance+0.8;
+            rural_resistance=rural_resistance-0.5;         
+        }else if(value=="India"){
+            hot_resistance=hot_resistance+0.5;
+            cold_resistance=cold_resistance-0.5;
+            rural_resistance=rural_resistance+0.8;
+            urban_resistance=urban_resistance-0.8;
+            humid_resistance=humid_resistance+0.1;
+            arid_resistance=arid_resistance-0.1;            
+        }else if(value=="Japan"){
+            wealthy_resisitance=wealthy_resisitance+0.2;
+            poverty_resistance=poverty_resistance-0.1;
+            urban_resistance=urban_resistance+0.8;
+            rural_resistance=rural_resistance-0.5;           
+        }else if(value=="Korea"){   
+           rural_resistance=rural_resistance+0.3;       
+        }else if(value=="CentralAsia"){
+           arid_resistance=arid_resistance+0.1;
+           humid_resistance=humid_resistance-0.08;
+           poverty_resistance=poverty_resistance+0.25;
+           wealthy_resisitance=wealthy_resisitance-0.08;                       
+        }else if(value=="Middleeast"){
+            hot_resistance=hot_resistance+0.5;
+           cold_resistance=cold_resistance-0.5;
+           arid_resistance=arid_resistance+0.1;
+           humid_resistance=humid_resistance-0.08;            
+        }else if(value=="Pakistan"){
+           hot_resistance=hot_resistance+0.5;
+           cold_resistance=cold_resistance-0.5;
+           arid_resistance=arid_resistance+0.1;
+           humid_resistance=humid_resistance-0.08;
+           poverty_resistance=poverty_resistance+0.25;
+           wealthy_resisitance=wealthy_resisitance-0.08;           
+        }else if(value=="Afghanistan"){
+            arid_resistance=arid_resistance+0.1;
+           humid_resistance=humid_resistance-0.08;
+           poverty_resistance=poverty_resistance+0.25;
+           wealthy_resisitance=wealthy_resisitance-0.08;           
+        }else if(value=="Iran"){
+            hot_resistance=hot_resistance+0.5;
+           cold_resistance=cold_resistance-0.5;
+           arid_resistance=arid_resistance+0.1;
+           humid_resistance=humid_resistance-0.08;             
+        }else if(value=="NewGuinea"){
+           poverty_resistance=poverty_resistance+0.25;
+           wealthy_resisitance=wealthy_resisitance-0.08;  
+           hot_resistance=hot_resistance+0.5;
+           cold_resistance=cold_resistance-0.5;  
+           humid_resistance=humid_resistance+0.1;
+           arid_resistance=arid_resistance-0.1;         
+        }else if(value=="CentralEurope"){
+            wealthy_resisitance=wealthy_resisitance+0.2;
+            poverty_resistance=poverty_resistance-0.1;
+            hot_resistance=hot_resistance-0.3;
+            cold_resistance=cold_resistance+0.5;
+            humid_resistance=humid_resistance+0.1;
+           arid_resistance=arid_resistance-0.1;           
+        }else if(value=="SaudiArabia"){
+            hot_resistance=hot_resistance+0.5;
+           cold_resistance=cold_resistance-0.5;
+           arid_resistance=arid_resistance+0.1;
+           humid_resistance=humid_resistance-0.08;             
+        }else if(value=="Kazakhstan"){
+            arid_resistance=arid_resistance+0.1;
+           humid_resistance=humid_resistance-0.08;
+           poverty_resistance=poverty_resistance+0.25;
+           wealthy_resisitance=wealthy_resisitance-0.08;           
+        }else if(value=="Iraq"){
+            hot_resistance=hot_resistance+0.5;
+           cold_resistance=cold_resistance-0.5;
+           arid_resistance=arid_resistance+0.1;
+           humid_resistance=humid_resistance-0.08;           
+        }else if(value=="Botswana"){
+            poverty_resistance=poverty_resistance+0.25;
+            wealthy_resisitance=wealthy_resisitance-0.08;
+            hot_resistance=hot_resistance+0.5;
+            cold_resistance=cold_resistance-0.5;        
+        }else if(value=="Zimbabwe"){
+            poverty_resistance=poverty_resistance+0.25;
+            wealthy_resisitance=wealthy_resisitance-0.08;
+            hot_resistance=hot_resistance+0.5;
+            cold_resistance=cold_resistance-0.5;           
+        }else if(value=="Angola"){
+            poverty_resistance=poverty_resistance+0.25;
+            wealthy_resisitance=wealthy_resisitance-0.08;
+            hot_resistance=hot_resistance+0.5;
+            cold_resistance=cold_resistance-0.5;            
+        }else if(value=="Algeria"){
+            poverty_resistance=poverty_resistance+0.25;
+            wealthy_resisitance=wealthy_resisitance-0.08;
+            hot_resistance=hot_resistance+0.5;
+            cold_resistance=cold_resistance-0.5; 
+            arid_resistance=arid_resistance+0.1;
+            humid_resistance=humid_resistance-0.08;           
+        }
+        if(value=="no"){
+
+        }else{
+            document.getElementById("selectstartCountry").disabled = true;
+        }
+
+    }
+</script>
+
+<p>你所带的插件</p>
+<input type="checkbox" id="hydrophobe" value="hydrophobe">干插
+<input type="checkbox" id="xerophobe" value="xerophobe">湿插
+<input type="checkbox" id="urbophobe" value="urbophobe">农插
+<input type="checkbox" id="rurophobe" value="rurophobe">城插
+<input type="checkbox" id="pharmaphile" value="pharmaphile">富插
+<input type="checkbox" id="pharmaphobe" value="pharmaphobe">穷插
+<input type="checkbox" id="frigophobe" value="frigophobe">热插
+<input type="checkbox" id="thermophobe" value="thermophobe">冷插
+<p>进化传播途径影响的抗性</p>
+<input type="checkbox" id="rodent1" value="rodent1">鼠1
+<input type="checkbox" id="rodent2" value="rodent2">鼠2
+<input type="checkbox" id="livestock1" value="livestock1">羊1
+<input type="checkbox" id="livestock2" value="livestock2">羊2
+<input type="checkbox" id="blood1" value="blood1">血1
+<input type="checkbox" id="blood2" value="blood2">血2
+<input type="checkbox" id="dust1" value="dust1">尘埃1
+<input type="checkbox" id="dust2" value="dust2">尘埃2
+<input type="checkbox" id="droplets1" value="droplets1">飞沫1
+<input type="checkbox" id="droplets2" value="droplets2">飞沫2
+<input type="checkbox" id="extreme_zoonosis" value="extreme_zoonosis">极端动物性传染
+<input type="checkbox" id="extreme_bioaerosol" value="extreme_bioaerosol">极端生物气凝胶
+<p>进化特殊能力影响的抗性</p>
+<input type="checkbox" id="cold_resistance1" value="cold_resistance1">抗寒1
+<input type="checkbox" id="cold_resistance2" value="cold_resistance2">抗寒2
+<input type="checkbox" id="heat_resistance1" value="heat_resistance1">抗热1
+<input type="checkbox" id="heat_resistance2" value="heat_resistance2">抗热2
+<input type="checkbox" id="environmental_hardening" value="environmental_hardening">环境强化
+<input type="checkbox" id="drug_resistance1" value="drug_resistance1">抗药1
+<input type="checkbox" id="drug_resistance2" value="drug_resistance2">抗药2
+<input type="checkbox" id="genetic_domination" value="genetic_domination">基因压制
+<p>进化发病症状影响的抗性</p>
+<input type="checkbox" id="sweating" value="sweating">出汗
+<input type="checkbox" id="pneumonia" value="pneumonia">肺炎
+<input type="checkbox" id="diarrhoea" value="diarrhoea">腹泻
+<input type="checkbox" id="dysentery" value="dysentery">痢疾
+<input type="checkbox" id="coughing" value="coughing">咳嗽
+
+
+
+
+
+
+
+<p></p>
+<script type="text/javascript">
+    function checkinfect(){
+        if(document.getElementById("hydrophobe").checked){
+           arid_resistance=arid_resistance+1.33;
+           humid_resistance=humid_resistance-1;
+           
+        }
+       
+        if(document.getElementById("xerophobe").checked){
+            arid_resistance=arid_resistance-1.33;
+           humid_resistance=humid_resistance+1;                      
+        }
+
+        if(document.getElementById("urbophobe").checked){
+            rural_resistance=rural_resistance+0.57;
+            urban_resistance=urban_resistance-0.67;           
+        }
+
+        if(document.getElementById("rurophobe").checked){
+            rural_resistance=rural_resistance-0.57;
+            urban_resistance=urban_resistance+0.67;                       
+        }
+        if(document.getElementById("pharmaphile").checked){
+            wealthy_resisitance=wealthy_resisitance+0.12;
+            poverty_resistance=poverty_resistance-0.5;                       
+        }
+       
+        if(document.getElementById("pharmaphobe").checked){
+            wealthy_resisitance=wealthy_resisitance-0.12;
+            poverty_resistance=poverty_resistance+0.5;                        
+        }
+
+        if(document.getElementById("frigophobe").checked){
+            hot_resistance=hot_resistance+0.1;
+            cold_resistance=cold_resistance-0.16;           
+        }
+
+        if(document.getElementById("thermophobe").checked){
+            hot_resistance=hot_resistance-0.1;
+            cold_resistance=cold_resistance+0.16;                      
+        }
+        if(document.getElementById("rodent1").checked){
+            urban_resistance=urban_resistance+0.7;           
+        }
+        if(document.getElementById("rodent2").checked){
+            urban_resistance=urban_resistance+1.2;                       
+        }
+        if(document.getElementById("livestock1").checked){
+            rural_resistance=rural_resistance+0.7;                        
+        }
+        if(document.getElementById("livestock2").checked){
+            rural_resistance=rural_resistance+1.2;                         
+        }
+        if(document.getElementById("blood1").checked){
+            poverty_resistance=poverty_resistance+0.8;           
+        }
+        if(document.getElementById("blood2").checked){
+            poverty_resistance=poverty_resistance+1.4;                       
+        }
+        if(document.getElementById("dust1").checked){
+            arid_resistance=arid_resistance+0.7;           
+        }
+        if(document.getElementById("dust2").checked){
+            arid_resistance=arid_resistance+1.2;           
+        }
+        if(document.getElementById("droplets1").checked){
+            humid_resistance=humid_resistance+0.7;           
+        }
+        if(document.getElementById("droplets2").checked){
+            humid_resistance=humid_resistance+1.2;           
+        }
+        if(document.getElementById("extreme_zoonosis").checked){
+            urban_resistance=urban_resistance+1;
+            rural_resistance=rural_resistance+1;           
+        }
+        if(document.getElementById("extreme_bioaerosol").checked){
+            humid_resistance=humid_resistance+1.3;
+            arid_resistance=arid_resistance+1.3;           
+        }
+        if(document.getElementById("cold_resistance1").checked){
+            cold_resistance=cold_resistance+0.3;           
+        }
+        if(document.getElementById("cold_resistance2").checked){
+            cold_resistance=cold_resistance+0.6;           
+        }
+        if(document.getElementById("heat_resistance1").checked){
+            hot_resistance=hot_resistance+0.3;           
+        }
+        if(document.getElementById("heat_resistance2").checked){
+            hot_resistance=hot_resistance+0.6;           
+        }
+        if(document.getElementById("environmental_hardening").checked){
+            hot_resistance=hot_resistance+1;           
+            cold_resistance=cold_resistance+1;
+        }
+        if(document.getElementById("drug_resistance1").checked){
+            wealthy_resisitance=wealthy_resisitance+0.3;           
+        }
+        if(document.getElementById("drug_resistance2").checked){
+            wealthy_resisitance=wealthy_resisitance+0.7;           
+        }
+        if(document.getElementById("genetic_domination").checked){           
+            wealthy_resisitance=wealthy_resisitance+0.1;
+            poverty_resistance=poverty_resistance+0.1;
+            cold_resistance=cold_resistance+0.1;
+            hot_resistance=hot_resistance+0.1;
+            rural_resistance=rural_resistance+0.1;
+            urban_resistance=urban_resistance+0.1;
+            humid_resistance=humid_resistance+0.1;
+            arid_resistance=arid_resistance+0.1
+        }
+        if(document.getElementById("sweating").checked){           
+            cold_resistance=cold_resistance+0.05;
+        }
+        if(document.getElementById("pneumonia").checked){           
+            cold_resistance=cold_resistance+0.1;
+        }
+        if(document.getElementById("diarrhoea").checked){           
+            poverty_resistance=poverty_resistance+0.1;            
+        }
+        if(document.getElementById("dysentery").checked){           
+            poverty_resistance=poverty_resistance+0.1;
+        }
+        if(document.getElementById("coughing").checked){           
+            urban_resistance=urban_resistance+0.05;
+        }
+        document.getElementById("checkinfect").disabled = true;
+
+    }
+
+
+
+</script>
+<input type="button" onclick="checkinfect()" id="checkinfect" value="确定加成" />
+
+<script>
+function calcinfect(){
+    var eam=30*wealthy+5*poverty+10*hot+10*cold+2*arid+2*humid+4*urban+4*rural;
+    var infection=(30*wealthy*wealthy_resisitance+5*poverty*poverty_resistance+10*hot_resistance*hot+10*cold_resistance*cold+2*arid*arid_resistance+2*humid_resistance*humid+4*urban_resistance*urban+4*rural_resistance*rural)/eam;
+    var trueinfection=infection*population_density;
+    alert("富裕抗性:"+wealthy_resisitance+"\n"+"贫困抗性:"+poverty_resistance+"\n"+"炎热抗性:"+hot_resistance+"\n"+"寒冷抗性:"+cold_resistance+"\n"+"城市抗性:"+urban_resistance+"\n"+"乡村抗性:"+rural_resistance+"\n"+"干燥抗性:"+arid_resistance+"\n"+"湿润抗性:"+humid_resistance+"\n"+"你在该地区的抗性为"+infection+"\n"+"实际抗性为"+trueinfection);
+    document.getElementById("calcinfect").disabled = true;    
+}
+
+</script>
+<p></p>
+<input type="button" onclick="calcinfect()" id="calcinfect" value="计算抗性" />
+<p></p>
+<input type="button" onclick="restart()" value="复原" />
+<script>
+ function restart(){
+ wealthy=0;
+ poverty=0;
+ urban=0;
+ rural=0;
+ hot=0;
+ cold=0;
+ humid=0;
+ arid=0;
+ population_density=0;
+ wealthy_resisitance=0;
+ poverty_resistance=0;
+ urban_resistance=0;
+ rural_resistance=0;
+ hot_resistance=0;
+ cold_resistance=0;
+ humid_resistance=0;
+ arid_resistance=0;
+ use_bioweapon=0;
+ use_bacteria=0;
+ use_parasite=0;
+ use_fungus=0;
+ use_virus=0;      
+ document.getElementById("selectCountry").disabled = false;
+ document.getElementById("button4").disabled = false; 
+ document.getElementById("selectstartCountry").disabled = false;
+ document.getElementById("checkinfect").disabled = false;
+ document.getElementById("calcinfect").disabled = false; 
+ document.getElementById("hydrophobe").checked=false;
+ document.getElementById("xerophobe").checked=false;
+ document.getElementById("urbophobe").checked=false;
+ document.getElementById("rurophobe").checked=false;
+ document.getElementById("pharmaphile").checked=false;
+ document.getElementById("pharmaphobe").checked=false;
+ document.getElementById("frigophobe").checked=false;
+ document.getElementById("thermophobe").checked=false;
+ document.getElementById("rodent1").checked=false;
+ document.getElementById("rodent2").checked=false;
+ document.getElementById("livestock1").checked=false;
+ document.getElementById("livestock2").checked=false;
+ document.getElementById("blood1").checked=false;
+ document.getElementById("blood2").checked=false;
+ document.getElementById("dust1").checked=false;
+ document.getElementById("dust2").checked=false;
+ document.getElementById("droplets1").checked=false;
+ document.getElementById("droplets2").checked=false;
+ document.getElementById("extreme_zoonosis").checked=false;
+ document.getElementById("extreme_bioaerosol").checked=false;
+ document.getElementById("cold_resistance1").checked=false;
+ document.getElementById("cold_resistance2").checked=false;
+ document.getElementById("heat_resistance1").checked=false;
+ document.getElementById("heat_resistance2").checked=false;
+ document.getElementById("environmental_hardening").checked=false;
+ document.getElementById("drug_resistance1").checked=false;
+ document.getElementById("drug_resistance2").checked=false; 
+ document.getElementById("genetic_domination").checked=false;
+ document.getElementById("sweating").checked=false;
+ document.getElementById("pneumonia").checked=false;
+ document.getElementById("diarrhoea").checked=false;
+ document.getElementById("dysentery").checked=false; 
+ document.getElementById("coughing").checked=false;
+}
+</script>
+
+
+
+</html>
